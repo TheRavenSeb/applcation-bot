@@ -14,3 +14,9 @@ async def on_ready():
     for guild in client.guilds:
     	print(f'{client.user} is connected to the following guild:\n'
           f'{guild.name}(id: {guild.id})')
+
+
+with open('token.txt') as f:
+   TOKEN =  f.read()
+
+client.run(TOKEN)
