@@ -1,8 +1,8 @@
 { 
     "1": "hello __USER__ welcome to the server. before you begin in our server you must anwser a few questions for us if you wish to cancel at any time type cancel or type contiune to begin "
     ,"2": "First we need you to tell us what kind of game console you this will be needed for the next step. (type cancel to stop)",
-    "3": "you've selected __DEVICE__ thats a good one. now please enter the username assoaited with the account on your __DEVICE__",
-    "4": "well hello there __USERNAME__ we hope u enjoy ur time here now please enter your age in D/M/YEAR format",
+    "3": "you've selected DEVICE thats a good one. now please enter the username assoaited with the account on your DEVICE",
+    "4": "well hello there USERNAME we hope u enjoy ur time here now please enter your age in D/M/YEAR format",
     "5": "Thank you now we are almost done here now please plaste in a link to your profile if you cnat get one for what ever reason type NONE",
     "6": "awesome ur ticket is now complete a moderator will contact you soon "
 

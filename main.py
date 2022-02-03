@@ -49,7 +49,7 @@ async def ticket(ctx):
         "username": None,            # 2/6
         "age": None,        # 3/6
         "description": None,    # 4/6
-        "files": []             # 5/6
+        "link": []             # 5/6
     } 
     
     msg_type = await client.wait_for('message', timeout=300)  
@@ -59,9 +59,9 @@ async def ticket(ctx):
       
       return None
     else:
-      ticket_res["type"] = msg_type.content
+      ticket_res["device"] = msg_type.content
 
-      promt_2 = promts["2"].replace("__DEVICE__", str(ticket_res["device"]).lower())
+      promt_2 = promts["2"].replace("DEVICE", str(ticket_res["device"]).lower())
       embed=nextcord.Embed(title="Beepu bot tickets (2/6)", description = promt_2, color=0xFF0000)
       await user.dm_channel.send(embed=embed)
   
@@ -74,10 +74,10 @@ async def ticket(ctx):
       if len(msg_app.content) > 32:
           await user.dm_channel.send("Your username is too long, please shorten it to 32 characters or less")
           return
-      ticket_res["application"] = msg_app.content
+      ticket_res["username"] = msg_app.content
   
       # Start of prompt 3
-      promt_3 = promts["3"].replace("__USERNAME__", str(ticket_res["username"]))
+      promt_3 = promts["3"].replace("USERNAME", str(ticket_res["username"]))
       embed=nextcord.Embed(title="Beepu bot tickets (3/6)", description = promt_3, color=0xFF0000)
       await user.dm_channel.send(embed=embed)
       # Wait for the message
@@ -120,7 +120,7 @@ async def ticket(ctx):
       
       if len(msg_files.attachments) > 0:
        for file in msg_files.attachments:
-         ticket_res["files"].append(file.url)
+         ticket_res["link"].append(file.url)
       
       embed=nextcord.Embed(title="Beepu bot tickets (6/6)", description = promts["6"], color=0xFF0000)
       await user.dm_channel.send(embed=embed)
@@ -128,8 +128,12 @@ async def ticket(ctx):
       # save the ticket res to a file
       with open("ticket.json", "w") as f:
           json.dump(ticket_res, f, indent=4)
-  
-      await user.dm_channel.send("Your ticket has been created!\n\nThank you for using the gaming commuity app bot!")
+
+      with open(ticket.json) as f:
+        output =f.read()    
+        embed=nextcord.Embed(title="Beepu bot tickets ", description = output, color=0xFF0000)
+        await user.dm_channel.send(embed=embed)  
+        await user.dm_channel.send("Your ticket has been created!\n\nThank you for using the gaming commuity app bot!")
 
 
 
